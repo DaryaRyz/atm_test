@@ -17,7 +17,7 @@ class BottomSheetBody extends StatefulWidget {
 }
 
 class _BottomSheetBodyState extends State<BottomSheetBody> {
-  bool _soundOn = false;
+  bool _soundOn = true;
   bool _isUsing = true;
 
   @override
