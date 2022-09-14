@@ -1,0 +1,64 @@
+name: atm_test
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.6 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  flutter_screenutil: ^5.5.3+2
+  logger: ^1.1.0
+  flutter_svg: ^1.1.4
+  flutter_bloc: ^8.1.1
+  wave: ^0.2.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/icons/
+
+  fonts:
+    - family: Jost
+      fonts:
+        - asset: assets/fonts/jost/Jost-Bold.ttf
+          style: normal
+          weight: 700
+        - asset: assets/fonts/jost/Jost-Light.ttf
+          style: normal
+          weight: 300
+        - asset: assets/fonts/jost/Jost-Medium.ttf
+          style: normal
+          weight: 500
+        - asset: assets/fonts/jost/Jost-Regular.ttf
+          style: normal
+          weight: 400
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/roboto/Roboto-Bold.ttf
+          style: normal
+          weight: 700
+        - asset: assets/fonts/roboto/Roboto-Light.ttf
+          style: normal
+          weight: 300
+        - asset: assets/fonts/roboto/Roboto-Medium.ttf
+          style: normal
+          weight: 500
+        - asset: assets/fonts/roboto/Roboto-Regular.ttf
+          style: normal
+          weight: 400
+
