@@ -1,6 +1,7 @@
 import 'package:atm_test/data/repository/atm_repository.dart';
 import 'package:atm_test/domain/bloc/atmBloc.dart';
 import 'package:atm_test/domain/models/atm_model.dart';
+import 'package:atm_test/presentation/screens/atm_inside_screen/events_widget/events_widget.dart';
 import 'package:atm_test/presentation/screens/atm_inside_screen/loading_widget/loading_widget.dart';
 import 'package:atm_test/presentation/screens/atm_inside_screen/main_info_widget/main_info_widget.dart';
 import 'package:atm_test/presentation/screens/widgets/custom_app_bar.dart';
@@ -86,6 +87,7 @@ class _AtmInsideBody extends StatelessWidget {
               children: [
                 AtmMainInfoWidget(atm: atm),
                 LoadingWidget(fullnessLevel: atm.fullnessLevel),
+                EventsWidget(eventList: atm.eventList),
               ],
             ),
           ),
