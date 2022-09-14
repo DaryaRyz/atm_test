@@ -1,5 +1,5 @@
 import 'package:atm_test/data/repository/atm_repository.dart';
-import 'package:atm_test/domain/bloc/atmBloc.dart';
+import 'package:atm_test/domain/bloc/atm_bloc.dart';
 import 'package:atm_test/domain/models/atm_model.dart';
 import 'package:atm_test/presentation/screens/atm_inside_screen/bottom_sheet_widget/bottom_sheet_body.dart';
 import 'package:atm_test/presentation/screens/atm_inside_screen/events_widget/events_widget.dart';

@@ -14,7 +14,7 @@ class MasterMode extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _MasterModeState createState() => _MasterModeState();
+  State<MasterMode> createState() => _MasterModeState();
 }
 
 class _MasterModeState extends State<MasterMode> {
@@ -54,7 +54,7 @@ class _MasterModeState extends State<MasterMode> {
               children: [
                 Expanded(
                   child: GestureDetector(
-                    onTap:  () {
+                    onTap: () {
                       setState(() {
                         _isUsing = true;
                       });

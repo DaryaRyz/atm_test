@@ -6,12 +6,14 @@ class CustomTextField extends StatelessWidget {
   final String? hintText;
   final double width;
   final TextInputType keyboardType;
+  final TextEditingController? controller;
 
   const CustomTextField({
     Key? key,
     this.hintText,
     this.width = 160,
     this.keyboardType = TextInputType.text,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -20,7 +22,7 @@ class CustomTextField extends StatelessWidget {
       width: width.w,
       height: 40.h,
       child: TextField(
-        //controller: controller,
+        controller: controller,
         keyboardType: keyboardType,
         style: const TextStyle(
           color: ColorStyles.tmnDarkBlue,
