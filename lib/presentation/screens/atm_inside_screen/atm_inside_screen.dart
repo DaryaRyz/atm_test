@@ -5,10 +5,10 @@ import 'package:atm_test/presentation/screens/atm_inside_screen/events_widget/ev
 import 'package:atm_test/presentation/screens/atm_inside_screen/finance_widget/finance_widget.dart';
 import 'package:atm_test/presentation/screens/atm_inside_screen/loading_widget/loading_widget.dart';
 import 'package:atm_test/presentation/screens/atm_inside_screen/main_info_widget/main_info_widget.dart';
-import 'package:atm_test/presentation/screens/widgets/custom_app_bar.dart';
-import 'package:atm_test/presentation/screens/widgets/custom_error_body.dart';
-import 'package:atm_test/presentation/screens/widgets/custom_loading_body.dart';
 import 'package:atm_test/presentation/styles/color_styles.dart';
+import 'package:atm_test/presentation/widgets/custom_app_bar.dart';
+import 'package:atm_test/presentation/widgets/custom_error_body.dart';
+import 'package:atm_test/presentation/widgets/custom_loading_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

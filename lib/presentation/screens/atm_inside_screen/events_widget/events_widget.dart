@@ -1,7 +1,7 @@
 import 'package:atm_test/domain/models/event_model.dart';
 import 'package:atm_test/presentation/screens/atm_inside_screen/events_widget/widgets/event_card.dart';
-import 'package:atm_test/presentation/screens/widgets/custom_button.dart';
 import 'package:atm_test/presentation/styles/strings.dart';
+import 'package:atm_test/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 class EventsWidget extends StatelessWidget {
