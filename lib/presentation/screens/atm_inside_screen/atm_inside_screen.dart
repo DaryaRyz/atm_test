@@ -1,6 +1,12 @@
+import 'package:atm_test/data/repository/atm_repository.dart';
+import 'package:atm_test/domain/bloc/atmBloc.dart';
+import 'package:atm_test/domain/models/atm_model.dart';
 import 'package:atm_test/presentation/screens/widgets/custom_app_bar.dart';
+import 'package:atm_test/presentation/screens/widgets/custom_error_body.dart';
+import 'package:atm_test/presentation/screens/widgets/custom_loading_body.dart';
 import 'package:atm_test/presentation/styles/color_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AtmInsideScreen extends StatefulWidget {
@@ -11,6 +17,14 @@ class AtmInsideScreen extends StatefulWidget {
 }
 
 class _AtmInsideScreenState extends State<AtmInsideScreen> {
+  final _atmBloc = AtmBloc(repository: MockAtmRepository());
+
+  @override
+  void initState() {
+    _atmBloc.add(AtmBlocLoadEvent());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,30 +39,53 @@ class _AtmInsideScreenState extends State<AtmInsideScreen> {
         onTap: () {},
       ),
       backgroundColor: ColorStyles.tmnUltralightBlue,
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        padding: EdgeInsets.symmetric(vertical: 16.h),
-        child: _AtmInsideBody(),
+      body: BlocBuilder(
+        bloc: _atmBloc,
+        builder: (context, state) {
+          if (state is AtmBlocLoadingState) {
+            return const CustomLoadingBody();
+          } else if (state is AtmBlocErrorState) {
+            return CustomErrorBody(
+              onTap: () {
+                _atmBloc.add(AtmBlocLoadEvent());
+              },
+            );
+          } else if (state is AtmBlocReadyState) {
+            return _AtmInsideBody(atm: state.atm);
+          } else {
+            return const SizedBox();
+          }
+        },
       ),
     );
   }
 }
 
 class _AtmInsideBody extends StatelessWidget {
-  const _AtmInsideBody({Key? key}) : super(key: key);
+  final AtmModel atm;
+
+  const _AtmInsideBody({
+    Key? key,
+    required this.atm,
+  }) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [],
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      padding: EdgeInsets.symmetric(vertical: 16.h),
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
