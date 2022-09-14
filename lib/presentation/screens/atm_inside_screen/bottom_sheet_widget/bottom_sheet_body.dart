@@ -1,3 +1,4 @@
+import 'package:atm_test/presentation/screens/atm_inside_screen/bottom_sheet_widget/widgets/custom_checkbox.dart';
 import 'package:atm_test/presentation/screens/atm_inside_screen/bottom_sheet_widget/widgets/custom_inputs.dart';
 import 'package:atm_test/presentation/screens/atm_inside_screen/bottom_sheet_widget/widgets/custom_notification.dart';
 import 'package:atm_test/presentation/styles/color_styles.dart';
@@ -14,6 +15,7 @@ class BottomSheetBody extends StatefulWidget {
 }
 
 class _BottomSheetBodyState extends State<BottomSheetBody> {
+  bool _soundOn = false;
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +26,19 @@ class _BottomSheetBodyState extends State<BottomSheetBody> {
           SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Column(
-              children: const [
-                CustomNotification(),
-                CustomInputs(title: Strings.decimalPosition),
-                CustomInputs(title: Strings.scaleFactor),
+              children: [
+                const CustomNotification(),
+                const CustomInputs(title: Strings.decimalPosition),
+                const CustomInputs(title: Strings.scaleFactor),
+                CustomCheckbox(
+                  title: Strings.onSound,
+                  value: _soundOn,
+                  onChange: (value) {
+                    setState(() {
+                      _soundOn = value;
+                    });
+                  },
+                ),
               ],
             ),
           ),
