@@ -24,7 +24,6 @@ abstract class Strings {
   static const atmFinanceCashBack = 'Сдача';
 
   ///bottom sheet
-  static const notificationText = 'Изменения от 12.07.2021, 12:30 применены успешно';
   static const decimalPosition = 'Decimal position';
   static const leftInputHintText = 'Cash';
   static const rightInputHintText = 'Cashless';
@@ -40,4 +39,5 @@ abstract class Strings {
   static const price = 'Цена';
   static const addLine = 'Добавить строку';
   static const saveChanges = 'Сохранить изменения';
+  static const notificationText = 'Изменения от 12.07.2021, 12:30\nприменены успешно';
 }
