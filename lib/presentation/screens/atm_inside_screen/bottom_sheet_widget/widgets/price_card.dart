@@ -2,6 +2,7 @@ import 'package:atm_test/domain/models/price_model.dart';
 import 'package:atm_test/presentation/styles/color_styles.dart';
 import 'package:atm_test/presentation/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -48,6 +49,7 @@ class _PriceCardState extends State<PriceCard> {
         children: [
           CustomTextField(
             controller: _hashController,
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             width: 56,
             keyboardType: const TextInputType.numberWithOptions(
               decimal: true,
@@ -57,6 +59,7 @@ class _PriceCardState extends State<PriceCard> {
           SizedBox(width: 16.w),
           CustomTextField(
             controller: _priceController,
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             width: 104,
             keyboardType: const TextInputType.numberWithOptions(
               decimal: true,

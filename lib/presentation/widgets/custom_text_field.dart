@@ -1,5 +1,6 @@
 import 'package:atm_test/presentation/styles/color_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -7,6 +8,7 @@ class CustomTextField extends StatelessWidget {
   final double width;
   final TextInputType keyboardType;
   final TextEditingController? controller;
+  final List<TextInputFormatter>? inputFormatters;
 
   const CustomTextField({
     Key? key,
@@ -14,6 +16,7 @@ class CustomTextField extends StatelessWidget {
     this.width = 160,
     this.keyboardType = TextInputType.text,
     this.controller,
+    this.inputFormatters,
   }) : super(key: key);
 
   @override
@@ -23,6 +26,7 @@ class CustomTextField extends StatelessWidget {
       height: 40.h,
       child: TextField(
         controller: controller,
+        inputFormatters: inputFormatters,
         keyboardType: keyboardType,
         style: const TextStyle(
           color: ColorStyles.tmnDarkBlue,
