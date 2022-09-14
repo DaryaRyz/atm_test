@@ -1,3 +1,4 @@
+import 'package:atm_test/presentation/screens/atm_inside_screen/bottom_sheet_widget/widgets/custom_inputs.dart';
 import 'package:atm_test/presentation/screens/atm_inside_screen/bottom_sheet_widget/widgets/custom_notification.dart';
 import 'package:atm_test/presentation/styles/color_styles.dart';
 import 'package:atm_test/presentation/styles/strings.dart';
@@ -25,6 +26,8 @@ class _BottomSheetBodyState extends State<BottomSheetBody> {
             child: Column(
               children: const [
                 CustomNotification(),
+                CustomInputs(title: Strings.decimalPosition),
+                CustomInputs(title: Strings.scaleFactor),
               ],
             ),
           ),
