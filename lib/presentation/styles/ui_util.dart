@@ -13,7 +13,7 @@ abstract class UiUtil {
   static fromCash(int sum){
     return RichText(
       text: TextSpan(
-        text: sum.toString(),
+        text: '$sum ',
         style: TextStyle(
           color: ColorStyles.tmnDarkBlue,
           fontFamily: 'Jost',
