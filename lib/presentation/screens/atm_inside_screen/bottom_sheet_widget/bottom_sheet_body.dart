@@ -1,6 +1,7 @@
 import 'package:atm_test/presentation/screens/atm_inside_screen/bottom_sheet_widget/widgets/custom_checkbox.dart';
 import 'package:atm_test/presentation/screens/atm_inside_screen/bottom_sheet_widget/widgets/custom_inputs.dart';
 import 'package:atm_test/presentation/screens/atm_inside_screen/bottom_sheet_widget/widgets/custom_notification.dart';
+import 'package:atm_test/presentation/screens/atm_inside_screen/bottom_sheet_widget/widgets/master_mode.dart';
 import 'package:atm_test/presentation/styles/color_styles.dart';
 import 'package:atm_test/presentation/styles/strings.dart';
 import 'package:atm_test/presentation/widgets/custom_button.dart';
@@ -16,6 +17,7 @@ class BottomSheetBody extends StatefulWidget {
 
 class _BottomSheetBodyState extends State<BottomSheetBody> {
   bool _soundOn = false;
+  bool _isUsing = true;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +38,14 @@ class _BottomSheetBodyState extends State<BottomSheetBody> {
                   onChange: (value) {
                     setState(() {
                       _soundOn = value;
+                    });
+                  },
+                ),
+                MasterMode(
+                  isUsing: _isUsing,
+                  onChange: (value) {
+                    setState(() {
+                      _isUsing = value;
                     });
                   },
                 ),
