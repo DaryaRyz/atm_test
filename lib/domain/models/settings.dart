@@ -7,7 +7,7 @@ class Settings {
   static const scaleFactorCashlessKey = 'scaleFactorCashless';
   static const soundOnKey = 'soundOn';
   static const isUsingKey = 'isUsing';
- // static const priceListKey = 'priceList';
+  static const priceListKey = 'priceList';
 
   final String decimalCash;
   final String decimalCashless;
@@ -15,7 +15,7 @@ class Settings {
   final String scaleCashless;
   final bool soundOn;
   final bool isUsing;
-  //final List<PriceModel> priceList;
+  final List<PriceModel> priceList;
 
   Settings({
     required this.decimalCash,
@@ -24,10 +24,10 @@ class Settings {
     required this.scaleCashless,
     required this.soundOn,
     required this.isUsing,
-    //required this.priceList,
+    required this.priceList,
   });
 
-  static Settings emptySettings(){
+  static Settings emptySettings() {
     return Settings(
       decimalCash: '',
       decimalCashless: '',
@@ -35,10 +35,10 @@ class Settings {
       scaleCashless: '',
       soundOn: true,
       isUsing: true,
-      // priceList: [
-      //   PriceModel(),
-      //   PriceModel(),
-      // ],
+      priceList: [
+        PriceModel(),
+        PriceModel(),
+      ],
     );
   }
 
@@ -50,7 +50,7 @@ class Settings {
       scaleFactorCashlessKey: scaleCashless,
       soundOnKey: soundOn,
       isUsingKey: isUsing,
-      //priceListKey: priceList,
+      priceListKey: priceList.map((element) => element.toMap()).toList(),
     };
   }
 
@@ -60,11 +60,19 @@ class Settings {
         scaleCash = map[scaleFactorCashKey],
         scaleCashless = map[scaleFactorCashlessKey],
         soundOn = map[soundOnKey],
-        isUsing = map[isUsingKey];
-        //priceList = map[priceListKey];
+        isUsing = map[isUsingKey],
+        priceList = _priceListFromMap(map[priceListKey]);
+
+  static List<PriceModel> _priceListFromMap(List mapList) {
+    List<PriceModel> result = [];
+    for (var element in mapList) {
+      result.add(PriceModel.fromMap(element));
+    }
+    return result;
+  }
 }
 
-enum ShowNotification{
+enum ShowNotification {
   positive,
   negative,
   unknown,

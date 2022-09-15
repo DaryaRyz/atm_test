@@ -1,6 +1,7 @@
 import 'package:atm_test/data/repository/storage_repository.dart';
 import 'package:atm_test/data/storage_util.dart';
 import 'package:atm_test/domain/bloc/settings_bloc.dart';
+import 'package:atm_test/domain/models/price_model.dart';
 import 'package:atm_test/domain/models/settings.dart';
 import 'package:atm_test/presentation/screens/atm_inside_screen/bottom_sheet_widget/widgets/custom_checkbox.dart';
 import 'package:atm_test/presentation/screens/atm_inside_screen/bottom_sheet_widget/widgets/custom_inputs.dart';
@@ -29,6 +30,7 @@ class _BottomSheetBodyState extends State<BottomSheetBody> {
       storage: StorageUtil(),
     ),
   );
+  late List<PriceModel> _priceList;
   final _decimalCashController = TextEditingController();
   final _decimalCashlessController = TextEditingController();
   final _scaleCashController = TextEditingController();
@@ -60,6 +62,7 @@ class _BottomSheetBodyState extends State<BottomSheetBody> {
           _scaleCashlessController.text = state.settings.scaleCashless;
           _soundOn = state.settings.soundOn;
           _isUsing = state.settings.isUsing;
+          _priceList = state.settings.priceList;
         }
       },
       buildWhen: (context, state) => state is! SettingsBlocSaveResultState,
@@ -137,6 +140,8 @@ class _BottomSheetBodyState extends State<BottomSheetBody> {
                       width: double.maxFinite,
                       height: 50.h,
                       backgroundColor: ColorStyles.tmnBlue,
+                      text: Strings.saveChanges,
+                      textColor: ColorStyles.tmnWhite,
                       onTap: () {
                         _settingsBloc.add(
                           SettingsBlocSaveEvent(
@@ -147,12 +152,11 @@ class _BottomSheetBodyState extends State<BottomSheetBody> {
                               decimalCashless: _decimalCashlessController.text,
                               isUsing: _isUsing,
                               soundOn: _soundOn,
+                              priceList: _priceList,
                             ),
                           ),
                         );
                       },
-                      text: Strings.saveChanges,
-                      textColor: ColorStyles.tmnWhite,
                     ),
                   ),
                 ],
