@@ -25,7 +25,18 @@ class SettingsBloc extends Bloc<SettingsBlocEvent, SettingsBlocState> {
   }
 
   Future<void> _saveHandler(SettingsBlocSaveEvent event, emit) async {
-    await repository.saveSettings(settings: event.settings);
+    emit(SettingsBlocSaveResultState(success: ShowNotification.unknown));
+    await Future.delayed(const Duration(milliseconds: 300));
+    try {
+      await repository.saveSettings(settings: event.settings);
+      emit(SettingsBlocSaveResultState(
+        time: DateTime.now(),
+        success: ShowNotification.positive,
+      ));
+    } catch (error) {
+      Logger().e(error);
+      emit(SettingsBlocSaveResultState(success: ShowNotification.negative));
+    }
   }
 }
 
@@ -47,6 +58,16 @@ class SettingsBlocReadyState implements SettingsBlocState {
   final Settings settings;
 
   SettingsBlocReadyState({required this.settings});
+}
+
+class SettingsBlocSaveResultState implements SettingsBlocState {
+  final DateTime? time;
+  final ShowNotification success;
+
+  SettingsBlocSaveResultState({
+    this.time,
+    required this.success,
+  });
 }
 
 class SettingsBlocErrorState implements SettingsBlocState {}

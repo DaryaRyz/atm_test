@@ -39,5 +39,5 @@ abstract class Strings {
   static const price = 'Цена';
   static const addLine = 'Добавить строку';
   static const saveChanges = 'Сохранить изменения';
-  static const notificationText = 'Изменения от 12.07.2021, 12:30\nприменены успешно';
+  static const notificationErrorText = 'Изменения не применены';
 }

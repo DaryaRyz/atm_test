@@ -7,59 +7,65 @@ class Settings {
   static const scaleFactorCashlessKey = 'scaleFactorCashless';
   static const soundOnKey = 'soundOn';
   static const isUsingKey = 'isUsing';
-  static const priceListKey = 'priceList';
+ // static const priceListKey = 'priceList';
 
-  final String decimalPositionCash;
-  final String decimalPositionCashless;
-  final String scaleFactorCash;
-  final String scaleFactorCashless;
+  final String decimalCash;
+  final String decimalCashless;
+  final String scaleCash;
+  final String scaleCashless;
   final bool soundOn;
   final bool isUsing;
-  final List<PriceModel> priceList;
+  //final List<PriceModel> priceList;
 
   Settings({
-    required this.decimalPositionCash,
-    required this.decimalPositionCashless,
-    required this.scaleFactorCash,
-    required this.scaleFactorCashless,
+    required this.decimalCash,
+    required this.decimalCashless,
+    required this.scaleCash,
+    required this.scaleCashless,
     required this.soundOn,
     required this.isUsing,
-    required this.priceList,
+    //required this.priceList,
   });
 
   static Settings emptySettings(){
     return Settings(
-      decimalPositionCash: '',
-      decimalPositionCashless: '',
-      scaleFactorCash: '',
-      scaleFactorCashless: '',
+      decimalCash: '',
+      decimalCashless: '',
+      scaleCash: '',
+      scaleCashless: '',
       soundOn: true,
       isUsing: true,
-      priceList: [
-        PriceModel(),
-        PriceModel(),
-      ],
+      // priceList: [
+      //   PriceModel(),
+      //   PriceModel(),
+      // ],
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      decimalPositionCashKey: decimalPositionCash,
-      decimalPositionCashlessKey: decimalPositionCashless,
-      scaleFactorCashKey: scaleFactorCash,
-      scaleFactorCashlessKey: scaleFactorCashless,
+      decimalPositionCashKey: decimalCash,
+      decimalPositionCashlessKey: decimalCashless,
+      scaleFactorCashKey: scaleCash,
+      scaleFactorCashlessKey: scaleCashless,
       soundOnKey: soundOn,
       isUsingKey: isUsing,
-      priceListKey: priceList,
+      //priceListKey: priceList,
     };
   }
 
   Settings.fromMap(Map<String, dynamic> map)
-      : decimalPositionCash = map[decimalPositionCashKey],
-        decimalPositionCashless = map[decimalPositionCashlessKey],
-        scaleFactorCash = map[scaleFactorCashKey],
-        scaleFactorCashless = map[scaleFactorCashlessKey],
+      : decimalCash = map[decimalPositionCashKey],
+        decimalCashless = map[decimalPositionCashlessKey],
+        scaleCash = map[scaleFactorCashKey],
+        scaleCashless = map[scaleFactorCashlessKey],
         soundOn = map[soundOnKey],
-        isUsing = map[isUsingKey],
-        priceList = map[priceListKey];
+        isUsing = map[isUsingKey];
+        //priceList = map[priceListKey];
+}
+
+enum ShowNotification{
+  positive,
+  negative,
+  unknown,
 }
