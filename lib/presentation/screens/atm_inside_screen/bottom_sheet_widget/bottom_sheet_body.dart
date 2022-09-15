@@ -17,13 +17,17 @@ class BottomSheetBody extends StatefulWidget {
 }
 
 class _BottomSheetBodyState extends State<BottomSheetBody> {
+  final _decimalPositionCashController = TextEditingController();
+  final _decimalPositionCashlessController = TextEditingController();
+  final _scaleFactorCashController = TextEditingController();
+  final _scaleFactorCashlessController = TextEditingController();
   bool _soundOn = true;
   bool _isUsing = true;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         FocusScope.of(context).unfocus();
       },
       child: SizedBox(
@@ -35,8 +39,16 @@ class _BottomSheetBodyState extends State<BottomSheetBody> {
               child: Column(
                 children: [
                   const CustomNotification(),
-                  const CustomInputs(title: Strings.decimalPosition),
-                  const CustomInputs(title: Strings.scaleFactor),
+                  CustomInputs(
+                    title: Strings.decimalPosition,
+                    cashController: _decimalPositionCashController,
+                    cashlessController: _decimalPositionCashlessController,
+                  ),
+                  CustomInputs(
+                    title: Strings.scaleFactor,
+                    cashController: _scaleFactorCashController,
+                    cashlessController: _scaleFactorCashlessController,
+                  ),
                   CustomCheckbox(
                     title: Strings.onSound,
                     value: _soundOn,
