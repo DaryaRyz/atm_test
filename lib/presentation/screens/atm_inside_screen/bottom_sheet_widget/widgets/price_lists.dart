@@ -90,8 +90,8 @@ class _PriceListsState extends State<PriceLists> {
               key: ObjectKey(priceList[index]),
               priceModel: priceList[index],
               onChange: (hashValue, priceValue) {
-                priceList[index].price = priceValue;
-                priceList[index].hash = hashValue;
+                priceList[index].copyWith(price: priceValue);
+                priceList[index].copyWith(hash: hashValue);
               },
               onDelete: () {
                 setState(() {
