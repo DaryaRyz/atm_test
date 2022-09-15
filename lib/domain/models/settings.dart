@@ -27,6 +27,21 @@ class Settings {
     required this.priceList,
   });
 
+  static Settings emptySettings(){
+    return Settings(
+      decimalPositionCash: '',
+      decimalPositionCashless: '',
+      scaleFactorCash: '',
+      scaleFactorCashless: '',
+      soundOn: true,
+      isUsing: true,
+      priceList: [
+        PriceModel(),
+        PriceModel(),
+      ],
+    );
+  }
+
   Map<String, dynamic> toMap() {
     return {
       decimalPositionCashKey: decimalPositionCash,
