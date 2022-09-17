@@ -24,21 +24,22 @@ class Settings {
     required this.scaleCashless,
     required this.soundOn,
     required this.isUsing,
-    required this.priceList,
+    this.priceList = const [],
   });
 
   static Settings emptySettings() {
     return Settings(
+      priceList: [
+        PriceModel(),
+        PriceModel(),
+      ],
       decimalCash: '',
       decimalCashless: '',
       scaleCash: '',
       scaleCashless: '',
       soundOn: true,
       isUsing: true,
-      priceList: [
-        PriceModel(),
-        PriceModel(),
-      ],
+
     );
   }
 

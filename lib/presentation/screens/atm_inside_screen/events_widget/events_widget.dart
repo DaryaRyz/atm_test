@@ -38,7 +38,7 @@ class EventsWidget extends StatelessWidget {
           CustomButton(
             backgroundColor: Colors.transparent,
             onTap: () {},
-            height: 32.h,
+            height: 32,
             width: double.maxFinite,
             text: Strings.atmEventButtonTitle,
             fontWeight: FontWeight.w300,

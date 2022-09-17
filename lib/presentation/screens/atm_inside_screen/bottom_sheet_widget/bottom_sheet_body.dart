@@ -37,6 +37,7 @@ class _BottomSheetBodyState extends State<BottomSheetBody> {
   final _scaleCashlessController = TextEditingController();
   late bool _soundOn;
   late bool _isUsing;
+  final _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -81,10 +82,11 @@ class _BottomSheetBodyState extends State<BottomSheetBody> {
               FocusScope.of(context).unfocus();
             },
             child: SizedBox(
-              height: 635.h,
+              height: 610.h,
               child: Stack(
                 children: [
                   SingleChildScrollView(
+                    controller: _scrollController,
                     physics: const BouncingScrollPhysics(),
                     child: Column(
                       children: [
@@ -129,7 +131,10 @@ class _BottomSheetBodyState extends State<BottomSheetBody> {
                             });
                           },
                         ),
-                        const PriceLists(),
+                        BlocProvider.value(
+                          value: _settingsBloc,
+                          child: PriceLists(priceList: _priceList),
+                        ),
                         SizedBox(height: 90.h)
                       ],
                     ),
@@ -138,11 +143,16 @@ class _BottomSheetBodyState extends State<BottomSheetBody> {
                     alignment: Alignment.bottomCenter,
                     child: CustomButton(
                       width: double.maxFinite,
-                      height: 50.h,
+                      height: 50,
                       backgroundColor: ColorStyles.tmnBlue,
                       text: Strings.saveChanges,
                       textColor: ColorStyles.tmnWhite,
                       onTap: () {
+                        _scrollController.animateTo(
+                          0,
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.ease,
+                        );
                         _settingsBloc.add(
                           SettingsBlocSaveEvent(
                             settings: Settings(
@@ -152,7 +162,6 @@ class _BottomSheetBodyState extends State<BottomSheetBody> {
                               decimalCashless: _decimalCashlessController.text,
                               isUsing: _isUsing,
                               soundOn: _soundOn,
-                              priceList: _priceList,
                             ),
                           ),
                         );
