@@ -1,13 +1,14 @@
-import 'package:atm_test/domain/models/event_model.dart';
-import 'package:atm_test/presentation/screens/atm_inside_screen/events_widget/widgets/event_card.dart';
+import 'package:atm_test/domain/models/event.dart';
+import 'package:atm_test/presentation/screens/atm_inside_screen/atm_events/event_card.dart';
 import 'package:atm_test/presentation/styles/strings.dart';
 import 'package:atm_test/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-class EventsWidget extends StatelessWidget {
-  final List<EventModel> eventList;
+import 'package:logger/logger.dart';
+class AtmEvents extends StatelessWidget {
+  final List<Event> eventList;
 
-  const EventsWidget({
+  const AtmEvents({
     Key? key,
     required this.eventList,
   }) : super(key: key);
@@ -33,12 +34,16 @@ class EventsWidget extends StatelessWidget {
               title: element.title,
               extraInfo: element.extraInfo,
               time: element.time,
-              onTap: () {},
+              onTap: () {
+                Logger().i('Pressing the EventCard');
+              },
             ),
           CustomButton(
             backgroundColor: Colors.transparent,
-            onTap: () {},
-            height: 32.h,
+            onTap: () {
+              Logger().i('Pressing the button "Show all events"');
+            },
+            height: 32,
             width: double.maxFinite,
             text: Strings.atmEventButtonTitle,
             fontWeight: FontWeight.w300,

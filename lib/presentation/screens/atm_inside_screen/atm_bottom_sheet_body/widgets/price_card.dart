@@ -1,4 +1,4 @@
-import 'package:atm_test/domain/models/price_model.dart';
+import 'package:atm_test/domain/models/price.dart';
 import 'package:atm_test/presentation/styles/color_styles.dart';
 import 'package:atm_test/presentation/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 class PriceCard extends StatefulWidget {
   final VoidCallback onDelete;
   final Function(String, String) onChange;
-  final PriceModel priceModel;
+  final Price priceModel;
 
   const PriceCard({
     Key? key,

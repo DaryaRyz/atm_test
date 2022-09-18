@@ -1,5 +1,6 @@
-import 'package:atm_test/domain/models/price_model.dart';
-import 'package:atm_test/presentation/screens/atm_inside_screen/bottom_sheet_widget/widgets/price_card.dart';
+import 'package:atm_test/domain/models/price.dart';
+import 'package:atm_test/presentation/screens/atm_inside_screen/atm_bottom_sheet_body/atm_bottom_sheet_body.dart';
+import 'package:atm_test/presentation/screens/atm_inside_screen/atm_bottom_sheet_body/widgets/price_card.dart';
 import 'package:atm_test/presentation/styles/color_styles.dart';
 import 'package:atm_test/presentation/styles/strings.dart';
 import 'package:atm_test/presentation/widgets/custom_button.dart';
@@ -7,17 +8,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PriceLists extends StatefulWidget {
-  const PriceLists({Key? key}) : super(key: key);
+  final PriceListController priceListController;
+
+  const PriceLists({
+    Key? key,
+    required this.priceListController,
+  }) : super(key: key);
 
   @override
   State<PriceLists> createState() => _PriceListsState();
 }
 
 class _PriceListsState extends State<PriceLists> {
-  List<PriceModel> priceList = [
-    PriceModel(),
-    PriceModel(),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +60,7 @@ class _PriceListsState extends State<PriceLists> {
           ],
         ),
         SizedBox(height: 8.h),
-        if (priceList.isNotEmpty)
+        if (widget.priceListController.value.isNotEmpty)
           Row(
             children: [
               Text(
@@ -85,17 +87,17 @@ class _PriceListsState extends State<PriceLists> {
         SizedBox(height: 8.h),
         Column(
           children: List.generate(
-            priceList.length,
+            widget.priceListController.value.length,
             (index) => PriceCard(
-              key: ObjectKey(priceList[index]),
-              priceModel: priceList[index],
+              key: ObjectKey(widget.priceListController.value[index]),
+              priceModel: widget.priceListController.value[index],
               onChange: (hashValue, priceValue) {
-                priceList[index].price = priceValue;
-                priceList[index].hash = hashValue;
+                widget.priceListController.value[index].price =  priceValue;
+                widget.priceListController.value[index].hash = hashValue;
               },
               onDelete: () {
                 setState(() {
-                  priceList.remove(priceList[index]);
+                  widget.priceListController.value.remove(widget.priceListController.value[index]);
                 });
               },
             ),
@@ -105,13 +107,13 @@ class _PriceListsState extends State<PriceLists> {
           backgroundColor: Colors.transparent,
           onTap: () {
             setState(() {
-              priceList.add(PriceModel());
+              widget.priceListController.value.add(Price());
             });
           },
           text: Strings.addLine,
           fontWeight: FontWeight.w300,
           width: double.maxFinite,
-          height: 32.h,
+          height: 32,
         ),
       ],
     );

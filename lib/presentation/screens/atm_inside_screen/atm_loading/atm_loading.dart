@@ -1,25 +1,26 @@
 import 'dart:async';
-
-import 'package:atm_test/presentation/screens/atm_inside_screen/loading_widget/widgets/progress_wave.dart';
+import 'package:atm_test/presentation/screens/atm_inside_screen/atm_loading/widgets/atm_count.dart';
+import 'package:atm_test/presentation/screens/atm_inside_screen/atm_loading/widgets/progress_wave.dart';
 import 'package:atm_test/presentation/styles/color_styles.dart';
 import 'package:atm_test/presentation/styles/strings.dart';
 import 'package:atm_test/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:logger/logger.dart';
 
-class LoadingWidget extends StatefulWidget {
+class AtmLoading extends StatefulWidget {
   final double fullnessLevel;
 
-  const LoadingWidget({
+  const AtmLoading({
     Key? key,
     required this.fullnessLevel,
   }) : super(key: key);
 
   @override
-  State<LoadingWidget> createState() => _LoadingWidgetState();
+  State<AtmLoading> createState() => _AtmLoadingState();
 }
 
-class _LoadingWidgetState extends State<LoadingWidget> {
+class _AtmLoadingState extends State<AtmLoading> {
   double _progress = 0;
 
   @override
@@ -49,7 +50,7 @@ class _LoadingWidgetState extends State<LoadingWidget> {
                     color: ColorStyles.tmnBlue.withOpacity(0.48),
                   ),
                 ),
-                _AnimatedCount(progress: _progress),
+                AnimatedCount(progress: _progress),
               ],
             ),
           ),
@@ -58,13 +59,17 @@ class _LoadingWidgetState extends State<LoadingWidget> {
           children: [
             CustomButton(
               backgroundColor: Colors.transparent,
-              onTap: () {},
+              onTap: () {
+                Logger().i('Pressing the button "Loading"');
+              },
               text: Strings.atmLoadingTitle,
             ),
             SizedBox(height: 16.h),
             CustomButton(
               backgroundColor: Colors.transparent,
-              onTap: () {},
+              onTap: () {
+                Logger().i('Pressing the button "Inventory"');
+              },
               text: Strings.atmInventoryTitle,
             ),
           ],
@@ -74,62 +79,19 @@ class _LoadingWidgetState extends State<LoadingWidget> {
   }
 
   void _updateProgress() {
+    const percentageConverter = 100;
+    const loadingStep = 0.01;
     const duration = Duration(milliseconds: 30);
     Timer.periodic(duration, (Timer t) {
-      if (_progress >= widget.fullnessLevel / 100) {
+      if (_progress >= widget.fullnessLevel / percentageConverter) {
         t.cancel();
         return;
       }
       if (!mounted) return;
       setState(() {
-        _progress += 0.01;
+        _progress += loadingStep;
       });
     });
   }
 }
 
-class _AnimatedCount extends StatelessWidget {
-  final double progress;
-
-  const _AnimatedCount({
-    Key? key,
-    required this.progress,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: 16.w,
-        vertical: 16.h,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            '${(progress * 100).toStringAsFixed(0)}%',
-            style: TextStyle(
-              color: ColorStyles.tmnDarkBlue,
-              fontFamily: 'Jost',
-              fontSize: 40.sp,
-              fontWeight: FontWeight.w800,
-            ),
-          ),
-          Align(
-            child: Text(
-              Strings.atmCurrentLoadingLevelTitle,
-              style: TextStyle(
-                color: ColorStyles.tmnDarkBlue,
-                fontFamily: 'Jost',
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w500,
-                height: 1.14,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}

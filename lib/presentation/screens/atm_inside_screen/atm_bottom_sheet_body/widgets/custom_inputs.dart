@@ -7,10 +7,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomInputs extends StatelessWidget {
   final String title;
+  final TextEditingController cashController;
+  final TextEditingController cashlessController;
 
   const CustomInputs({
     Key? key,
     required this.title,
+    required this.cashController,
+    required this.cashlessController,
   }) : super(key: key);
 
   @override
@@ -36,9 +40,15 @@ class CustomInputs extends StatelessWidget {
             SizedBox(height: 8.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                CustomTextField(hintText: Strings.leftInputHintText),
-                CustomTextField(hintText: Strings.rightInputHintText),
+              children: [
+                CustomTextField(
+                  hintText: Strings.leftInputHintText,
+                  controller: cashController,
+                ),
+                CustomTextField(
+                  hintText: Strings.rightInputHintText,
+                  controller: cashlessController,
+                ),
               ],
             ),
           ],

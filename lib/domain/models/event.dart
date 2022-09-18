@@ -1,9 +1,9 @@
-class EventModel {
+class Event {
   final String title;
   final String? extraInfo;
   final DateTime time;
 
-  EventModel({
+  Event({
     required this.title,
     this.extraInfo,
     required this.time,

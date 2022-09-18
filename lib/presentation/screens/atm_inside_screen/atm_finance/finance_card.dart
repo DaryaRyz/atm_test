@@ -1,4 +1,4 @@
-import 'package:atm_test/domain/models/finance_model.dart';
+import 'package:atm_test/domain/models/finance.dart';
 import 'package:atm_test/presentation/styles/color_styles.dart';
 import 'package:atm_test/presentation/styles/strings.dart';
 import 'package:atm_test/presentation/styles/ui_util.dart';
@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class FinanceCard extends StatelessWidget {
-  final FinanceModel finance;
+  final Finance finance;
 
   const FinanceCard({
     Key? key,
