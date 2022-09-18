@@ -30,11 +30,11 @@ class _AtmBottomSheetBodyState extends State<AtmBottomSheetBody> {
       storage: StorageUtil(),
     ),
   );
-  late List<Price> _priceList;
   final _decimalCashController = TextEditingController();
   final _decimalCashlessController = TextEditingController();
   final _scaleCashController = TextEditingController();
   final _scaleCashlessController = TextEditingController();
+  final _priceListController = PriceListController();
   late bool _soundOn;
   late bool _isUsing;
   final _scrollController = ScrollController();
@@ -63,7 +63,7 @@ class _AtmBottomSheetBodyState extends State<AtmBottomSheetBody> {
           _scaleCashlessController.text = state.settings.scaleCashless;
           _soundOn = state.settings.soundOn;
           _isUsing = state.settings.isUsing;
-          _priceList = state.settings.priceList;
+          _priceListController.value = state.settings.priceList;
         }
       },
       buildWhen: (context, state) => state is! SettingsBlocSaveResultState,
@@ -131,10 +131,7 @@ class _AtmBottomSheetBodyState extends State<AtmBottomSheetBody> {
                             });
                           },
                         ),
-                        BlocProvider.value(
-                          value: _settingsBloc,
-                          child: PriceLists(priceList: _priceList),
-                        ),
+                        PriceLists(priceListController: _priceListController),
                         SizedBox(height: 90.h)
                       ],
                     ),
@@ -162,6 +159,7 @@ class _AtmBottomSheetBodyState extends State<AtmBottomSheetBody> {
                               decimalCashless: _decimalCashlessController.text,
                               isUsing: _isUsing,
                               soundOn: _soundOn,
+                              priceList: _priceListController.value,
                             ),
                           ),
                         );
@@ -178,4 +176,18 @@ class _AtmBottomSheetBodyState extends State<AtmBottomSheetBody> {
       },
     );
   }
+}
+
+class PriceListController extends ChangeNotifier{
+  List<Price> _priceList = [];
+
+  List<Price> get value{
+    return _priceList;
+  }
+
+  set value (List<Price> value){
+    _priceList = value;
+    notifyListeners();
+  }
+
 }

@@ -24,7 +24,7 @@ class Settings {
     required this.scaleCashless,
     required this.soundOn,
     required this.isUsing,
-    this.priceList = const [],
+    required this.priceList,
   });
 
   Settings.empty()

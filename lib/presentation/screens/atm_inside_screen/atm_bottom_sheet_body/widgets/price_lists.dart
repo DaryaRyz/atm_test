@@ -1,19 +1,18 @@
-import 'package:atm_test/domain/bloc/settings_bloc.dart';
 import 'package:atm_test/domain/models/price.dart';
+import 'package:atm_test/presentation/screens/atm_inside_screen/atm_bottom_sheet_body/atm_bottom_sheet_body.dart';
 import 'package:atm_test/presentation/screens/atm_inside_screen/atm_bottom_sheet_body/widgets/price_card.dart';
 import 'package:atm_test/presentation/styles/color_styles.dart';
 import 'package:atm_test/presentation/styles/strings.dart';
 import 'package:atm_test/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PriceLists extends StatefulWidget {
-  final List<Price> priceList;
+  final PriceListController priceListController;
 
   const PriceLists({
     Key? key,
-    required this.priceList,
+    required this.priceListController,
   }) : super(key: key);
 
   @override
@@ -21,13 +20,6 @@ class PriceLists extends StatefulWidget {
 }
 
 class _PriceListsState extends State<PriceLists> {
-  late SettingsBloc _settingsBloc;
-
-  @override
-  void initState() {
-    _settingsBloc = BlocProvider.of<SettingsBloc>(context);
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +60,7 @@ class _PriceListsState extends State<PriceLists> {
           ],
         ),
         SizedBox(height: 8.h),
-        if (widget.priceList.isNotEmpty)
+        if (widget.priceListController.value.isNotEmpty)
           Row(
             children: [
               Text(
@@ -95,20 +87,17 @@ class _PriceListsState extends State<PriceLists> {
         SizedBox(height: 8.h),
         Column(
           children: List.generate(
-            widget.priceList.length,
+            widget.priceListController.value.length,
             (index) => PriceCard(
-              key: ObjectKey(widget.priceList[index]),
-              priceModel: widget.priceList[index],
+              key: ObjectKey(widget.priceListController.value[index]),
+              priceModel: widget.priceListController.value[index],
               onChange: (hashValue, priceValue) {
-                widget.priceList[index].price =  priceValue;
-                widget.priceList[index].hash = hashValue;
-                _settingsBloc.add(
-                  SettingsBlocPriceListChangeEvent(priceList: widget.priceList),
-                );
+                widget.priceListController.value[index].price =  priceValue;
+                widget.priceListController.value[index].hash = hashValue;
               },
               onDelete: () {
                 setState(() {
-                  widget.priceList.remove(widget.priceList[index]);
+                  widget.priceListController.value.remove(widget.priceListController.value[index]);
                 });
               },
             ),
@@ -118,7 +107,7 @@ class _PriceListsState extends State<PriceLists> {
           backgroundColor: Colors.transparent,
           onTap: () {
             setState(() {
-              widget.priceList.add(Price());
+              widget.priceListController.value.add(Price());
             });
           },
           text: Strings.addLine,
