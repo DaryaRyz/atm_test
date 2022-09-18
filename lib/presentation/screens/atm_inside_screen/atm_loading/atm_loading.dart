@@ -6,6 +6,7 @@ import 'package:atm_test/presentation/styles/strings.dart';
 import 'package:atm_test/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:logger/logger.dart';
 
 class AtmLoading extends StatefulWidget {
   final double fullnessLevel;
@@ -58,13 +59,17 @@ class _AtmLoadingState extends State<AtmLoading> {
           children: [
             CustomButton(
               backgroundColor: Colors.transparent,
-              onTap: () {},
+              onTap: () {
+                Logger().i('Pressing the button "Loading"');
+              },
               text: Strings.atmLoadingTitle,
             ),
             SizedBox(height: 16.h),
             CustomButton(
               backgroundColor: Colors.transparent,
-              onTap: () {},
+              onTap: () {
+                Logger().i('Pressing the button "Inventory"');
+              },
               text: Strings.atmInventoryTitle,
             ),
           ],
@@ -74,15 +79,17 @@ class _AtmLoadingState extends State<AtmLoading> {
   }
 
   void _updateProgress() {
+    const percentageConverter = 100;
+    const loadingStep = 0.01;
     const duration = Duration(milliseconds: 30);
     Timer.periodic(duration, (Timer t) {
-      if (_progress >= widget.fullnessLevel / 100) {
+      if (_progress >= widget.fullnessLevel / percentageConverter) {
         t.cancel();
         return;
       }
       if (!mounted) return;
       setState(() {
-        _progress += 0.01;
+        _progress += loadingStep;
       });
     });
   }
