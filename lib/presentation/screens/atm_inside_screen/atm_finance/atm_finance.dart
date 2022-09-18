@@ -1,13 +1,13 @@
-import 'package:atm_test/domain/models/finance_model.dart';
-import 'package:atm_test/presentation/screens/atm_inside_screen/finance_widget/widgets/finance_card.dart';
+import 'package:atm_test/domain/models/finance.dart';
+import 'package:atm_test/presentation/screens/atm_inside_screen/atm_finance/finance_card.dart';
 import 'package:atm_test/presentation/styles/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class FinanceWidget extends StatelessWidget {
-  final List<FinanceModel> financeList;
+class AtmFinance extends StatelessWidget {
+  final List<Finance> financeList;
 
-  const FinanceWidget({
+  const AtmFinance({
     Key? key,
     required this.financeList,
   }) : super(key: key);

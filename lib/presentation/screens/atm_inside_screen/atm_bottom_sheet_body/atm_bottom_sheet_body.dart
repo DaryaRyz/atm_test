@@ -1,13 +1,13 @@
 import 'package:atm_test/data/repository/storage_repository.dart';
 import 'package:atm_test/data/storage_util.dart';
 import 'package:atm_test/domain/bloc/settings_bloc.dart';
-import 'package:atm_test/domain/models/price_model.dart';
+import 'package:atm_test/domain/models/price.dart';
 import 'package:atm_test/domain/models/settings.dart';
-import 'package:atm_test/presentation/screens/atm_inside_screen/bottom_sheet_widget/widgets/custom_checkbox.dart';
-import 'package:atm_test/presentation/screens/atm_inside_screen/bottom_sheet_widget/widgets/custom_inputs.dart';
-import 'package:atm_test/presentation/screens/atm_inside_screen/bottom_sheet_widget/widgets/custom_notification.dart';
-import 'package:atm_test/presentation/screens/atm_inside_screen/bottom_sheet_widget/widgets/master_mode.dart';
-import 'package:atm_test/presentation/screens/atm_inside_screen/bottom_sheet_widget/widgets/price_lists.dart';
+import 'package:atm_test/presentation/screens/atm_inside_screen/atm_bottom_sheet_body/widgets/custom_checkbox.dart';
+import 'package:atm_test/presentation/screens/atm_inside_screen/atm_bottom_sheet_body/widgets/custom_inputs.dart';
+import 'package:atm_test/presentation/screens/atm_inside_screen/atm_bottom_sheet_body/widgets/custom_notification.dart';
+import 'package:atm_test/presentation/screens/atm_inside_screen/atm_bottom_sheet_body/widgets/master_mode.dart';
+import 'package:atm_test/presentation/screens/atm_inside_screen/atm_bottom_sheet_body/widgets/price_lists.dart';
 import 'package:atm_test/presentation/styles/color_styles.dart';
 import 'package:atm_test/presentation/styles/strings.dart';
 import 'package:atm_test/presentation/widgets/custom_button.dart';
@@ -17,20 +17,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class BottomSheetBody extends StatefulWidget {
-  const BottomSheetBody({Key? key}) : super(key: key);
+class AtmBottomSheetBody extends StatefulWidget {
+  const AtmBottomSheetBody({Key? key}) : super(key: key);
 
   @override
-  State<BottomSheetBody> createState() => _BottomSheetBodyState();
+  State<AtmBottomSheetBody> createState() => _AtmBottomSheetBodyState();
 }
 
-class _BottomSheetBodyState extends State<BottomSheetBody> {
+class _AtmBottomSheetBodyState extends State<AtmBottomSheetBody> {
   final _settingsBloc = SettingsBloc(
     repository: StorageDataRepository(
       storage: StorageUtil(),
     ),
   );
-  late List<PriceModel> _priceList;
+  late List<Price> _priceList;
   final _decimalCashController = TextEditingController();
   final _decimalCashlessController = TextEditingController();
   final _scaleCashController = TextEditingController();

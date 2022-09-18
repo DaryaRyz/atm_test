@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:atm_test/data/repository/atm_repository.dart';
-import 'package:atm_test/domain/models/atm_model.dart';
+import 'package:atm_test/domain/models/atm.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
 
@@ -34,7 +34,7 @@ abstract class AtmBlocState {}
 class AtmBlocLoadingState extends AtmBlocState {}
 
 class AtmBlocReadyState extends AtmBlocState {
-  final AtmModel atm;
+  final Atm atm;
 
   AtmBlocReadyState({required this.atm});
 }

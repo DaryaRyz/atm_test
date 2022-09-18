@@ -1,8 +1,8 @@
-class FinanceModel {
+class Finance {
   final int cash;
   final CashType type;
 
-  FinanceModel({
+  Finance({
     required this.cash,
     required this.type,
   });

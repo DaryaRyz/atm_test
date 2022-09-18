@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:atm_test/data/repository/storage_repository.dart';
-import 'package:atm_test/domain/models/price_model.dart';
+import 'package:atm_test/domain/models/price.dart';
 import 'package:atm_test/domain/models/settings.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
@@ -15,7 +15,7 @@ class SettingsBloc extends Bloc<SettingsBlocEvent, SettingsBlocState> {
     on<SettingsBlocPriceListChangeEvent>(_priceListChangeHandler);
   }
 
-  List<PriceModel> priceList = [];
+  List<Price> priceList = [];
 
   Future<void> _loadHandler(SettingsBlocLoadEvent event, emit) async {
     emit(SettingsBlocLoadingState());
@@ -63,7 +63,7 @@ abstract class SettingsBlocEvent {}
 
 class SettingsBlocLoadEvent extends SettingsBlocEvent {}
 class SettingsBlocPriceListChangeEvent extends SettingsBlocEvent{
-  final List<PriceModel> priceList;
+  final List<Price> priceList;
 
   SettingsBlocPriceListChangeEvent({required this.priceList});
 }

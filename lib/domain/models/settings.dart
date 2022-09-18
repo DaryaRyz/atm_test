@@ -1,4 +1,4 @@
-import 'package:atm_test/domain/models/price_model.dart';
+import 'package:atm_test/domain/models/price.dart';
 
 class Settings {
   static const decimalPositionCashKey = 'decimalPositionCash';
@@ -15,7 +15,7 @@ class Settings {
   final String scaleCashless;
   final bool soundOn;
   final bool isUsing;
-  final List<PriceModel> priceList;
+  final List<Price> priceList;
 
   Settings({
     required this.decimalCash,
@@ -30,8 +30,8 @@ class Settings {
   static Settings emptySettings() {
     return Settings(
       priceList: [
-        PriceModel(),
-        PriceModel(),
+        Price(),
+        Price(),
       ],
       decimalCash: '',
       decimalCashless: '',
@@ -64,10 +64,10 @@ class Settings {
         isUsing = map[isUsingKey],
         priceList = _priceListFromMap(map[priceListKey]);
 
-  static List<PriceModel> _priceListFromMap(List mapList) {
-    List<PriceModel> result = [];
+  static List<Price> _priceListFromMap(List mapList) {
+    List<Price> result = [];
     for (var element in mapList) {
-      result.add(PriceModel.fromMap(element));
+      result.add(Price.fromMap(element));
     }
     return result;
   }

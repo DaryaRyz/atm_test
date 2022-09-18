@@ -1,6 +1,6 @@
 import 'package:atm_test/domain/bloc/settings_bloc.dart';
-import 'package:atm_test/domain/models/price_model.dart';
-import 'package:atm_test/presentation/screens/atm_inside_screen/bottom_sheet_widget/widgets/price_card.dart';
+import 'package:atm_test/domain/models/price.dart';
+import 'package:atm_test/presentation/screens/atm_inside_screen/atm_bottom_sheet_body/widgets/price_card.dart';
 import 'package:atm_test/presentation/styles/color_styles.dart';
 import 'package:atm_test/presentation/styles/strings.dart';
 import 'package:atm_test/presentation/widgets/custom_button.dart';
@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PriceLists extends StatefulWidget {
-  final List<PriceModel> priceList;
+  final List<Price> priceList;
 
   const PriceLists({
     Key? key,
@@ -118,7 +118,7 @@ class _PriceListsState extends State<PriceLists> {
           backgroundColor: Colors.transparent,
           onTap: () {
             setState(() {
-              widget.priceList.add(PriceModel());
+              widget.priceList.add(Price());
             });
           },
           text: Strings.addLine,

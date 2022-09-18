@@ -9,7 +9,7 @@ abstract class Strings {
   static const atmIdTitle = 'Идентификатор';
   static const atmModemTitle = 'Модем';
 
-  ///loading block
+  ///atm_loading block
   static const atmCurrentLoadingLevelTitle = 'Текущий уровень загрузки';
   static const atmLoadingTitle = 'Загрузка';
   static const atmInventoryTitle = 'Инвентаризация';
@@ -18,7 +18,7 @@ abstract class Strings {
   static const atmEventTitle = 'События';
   static const atmEventButtonTitle = 'Смотреть еще';
 
-  ///finance block
+  ///atm_finance block
   static const atmFinanceTitle = 'Финансы';
   static const atmFinanceCash = 'Деньги в ТА';
   static const atmFinanceCashBack = 'Сдача';

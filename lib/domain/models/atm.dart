@@ -1,8 +1,8 @@
 
-import 'package:atm_test/domain/models/event_model.dart';
-import 'package:atm_test/domain/models/finance_model.dart';
+import 'package:atm_test/domain/models/event.dart';
+import 'package:atm_test/domain/models/finance.dart';
 
-class AtmModel {
+class Atm {
   final String type;
   final String atmNumber;
   final bool isWorking;
@@ -12,10 +12,10 @@ class AtmModel {
   final String id;
   final String modem;
   final double fullnessLevel;
-  final List<EventModel> eventList;
-  final List<FinanceModel> financeList;
+  final List<Event> eventList;
+  final List<Finance> financeList;
 
-  AtmModel({
+  Atm({
     required this.type,
     required this.atmNumber,
     required this.isWorking,

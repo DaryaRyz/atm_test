@@ -1,14 +1,16 @@
-import 'package:atm_test/domain/models/atm_model.dart';
+import 'package:atm_test/domain/models/atm.dart';
+import 'package:atm_test/presentation/screens/atm_inside_screen/atm_main_info/widgets/atm_info_line.dart';
+import 'package:atm_test/presentation/screens/atm_inside_screen/atm_main_info/widgets/atm_status.dart';
 import 'package:atm_test/presentation/styles/color_styles.dart';
 import 'package:atm_test/presentation/styles/strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AtmMainInfoWidget extends StatelessWidget {
-  final AtmModel atm;
+class AtmMainInfo extends StatelessWidget {
+  final Atm atm;
 
-  const AtmMainInfoWidget({
+  const AtmMainInfo({
     Key? key,
     required this.atm,
   }) : super(key: key);
@@ -73,7 +75,7 @@ class AtmMainInfoWidget extends StatelessWidget {
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-                    _AtmStatus(isWorking: atm.isWorking),
+                    AtmStatus(isWorking: atm.isWorking),
                     Text(
                       atm.location,
                       style: TextStyle(
@@ -98,19 +100,19 @@ class AtmMainInfoWidget extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    _AtmInfoWidget(
+                    AtmInfoLine(
                       title: Strings.atmBusTypeTitle,
                       value: atm.busType,
                     ),
-                    _AtmInfoWidget(
+                    AtmInfoLine(
                       title: Strings.atmSignalLevelTitle,
                       value: atm.signalLevel,
                     ),
-                    _AtmInfoWidget(
+                    AtmInfoLine(
                       title: Strings.atmIdTitle,
                       value: atm.id,
                     ),
-                    _AtmInfoWidget(
+                    AtmInfoLine(
                       title: Strings.atmModemTitle,
                       value: atm.modem,
                     ),
@@ -125,81 +127,4 @@ class AtmMainInfoWidget extends StatelessWidget {
   }
 }
 
-class _AtmInfoWidget extends StatelessWidget {
-  final String title;
-  final String value;
 
-  const _AtmInfoWidget({
-    Key? key,
-    required this.title,
-    required this.value,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: 8.h),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              color: ColorStyles.tmnDarkBlue,
-              fontFamily: 'Roboto',
-              fontSize: 14.sp,
-              fontWeight: FontWeight.w300,
-            ),
-          ),
-          Text(
-            value,
-            style: TextStyle(
-              color: ColorStyles.tmnDarkBlue,
-              fontFamily: 'Roboto',
-              fontSize: 14.sp,
-              fontWeight: FontWeight.w300,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _AtmStatus extends StatelessWidget {
-  final bool isWorking;
-
-  const _AtmStatus({
-    Key? key,
-    required this.isWorking,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8.h),
-      child: Row(
-        children: [
-          Container(
-            width: 8.r,
-            height: 8.r,
-            decoration: BoxDecoration(
-              color: isWorking ? ColorStyles.tmnGreen : ColorStyles.tmnRed,
-              borderRadius: BorderRadius.circular(100),
-            ),
-          ),
-          SizedBox(width: 8.w),
-          Text(
-            isWorking ? Strings.atmWorkingStatus : Strings.atmNonWorkingStatus,
-            style: TextStyle(
-              color: ColorStyles.tmnDarkBlue,
-              fontFamily: 'Roboto',
-              fontSize: 14.sp,
-              fontWeight: FontWeight.w300,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
