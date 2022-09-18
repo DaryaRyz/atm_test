@@ -1,11 +1,10 @@
 import 'package:atm_test/data/repository/atm_repository.dart';
 import 'package:atm_test/domain/bloc/atm_bloc.dart';
-import 'package:atm_test/domain/models/atm_model.dart';
-import 'package:atm_test/presentation/screens/atm_inside_screen/bottom_sheet_widget/bottom_sheet_body.dart';
-import 'package:atm_test/presentation/screens/atm_inside_screen/events_widget/events_widget.dart';
-import 'package:atm_test/presentation/screens/atm_inside_screen/finance_widget/finance_widget.dart';
-import 'package:atm_test/presentation/screens/atm_inside_screen/loading_widget/loading_widget.dart';
-import 'package:atm_test/presentation/screens/atm_inside_screen/main_info_widget/main_info_widget.dart';
+import 'package:atm_test/domain/models/atm.dart';
+import 'package:atm_test/presentation/screens/atm_inside_screen/atm_bottom_sheet_body/atm_bottom_sheet_body.dart';
+import 'package:atm_test/presentation/screens/atm_inside_screen/atm_events/atm_events.dart';
+import 'package:atm_test/presentation/screens/atm_inside_screen/atm_finance/atm_finance.dart';
+import 'package:atm_test/presentation/screens/atm_inside_screen/atm_loading/atm_loading.dart';
 import 'package:atm_test/presentation/styles/color_styles.dart';
 import 'package:atm_test/presentation/widgets/custom_app_bar.dart';
 import 'package:atm_test/presentation/widgets/custom_bottom_sheet.dart';
@@ -14,6 +13,8 @@ import 'package:atm_test/presentation/widgets/custom_loading_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'atm_main_info/atm_main_info.dart';
 
 class AtmInsideScreen extends StatefulWidget {
   const AtmInsideScreen({Key? key}) : super(key: key);
@@ -46,7 +47,7 @@ class _AtmInsideScreenState extends State<AtmInsideScreen> {
           CustomBottomSheet.dialog(
             context: context,
             title: 'Загрузка',
-            body: const BottomSheetBody(),
+            body: const AtmBottomSheetBody(),
           );
         },
       ),
@@ -74,7 +75,7 @@ class _AtmInsideScreenState extends State<AtmInsideScreen> {
 }
 
 class _AtmInsideBody extends StatelessWidget {
-  final AtmModel atm;
+  final Atm atm;
 
   const _AtmInsideBody({
     Key? key,
@@ -94,13 +95,13 @@ class _AtmInsideBody extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AtmMainInfoWidget(atm: atm),
-                LoadingWidget(fullnessLevel: atm.fullnessLevel),
-                EventsWidget(eventList: atm.eventList),
+                AtmMainInfo(atm: atm),
+                AtmLoading(fullnessLevel: atm.fullnessLevel),
+                AtmEvents(eventList: atm.eventList),
               ],
             ),
           ),
-          FinanceWidget(financeList: atm.financeList),
+          AtmFinance(financeList: atm.financeList),
         ],
       ),
     );

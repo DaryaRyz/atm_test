@@ -10,7 +10,7 @@ abstract class UiUtil {
     return result;
   }
 
-  static fromCash(int sum){
+  static fromCash(int sum) {
     return RichText(
       text: TextSpan(
         text: '$sum ',
@@ -28,5 +28,16 @@ abstract class UiUtil {
         ],
       ),
     );
+  }
+
+  static fromSuccessSaveTime(DateTime time) {
+    String result = 'Изменения от ';
+    result += time.day < 10 ? '0${time.day}.' : '${time.day}.';
+    result += time.month < 10 ? '0${time.month}.' : '${time.month}.';
+    result += '${time.year}, ';
+    result += time.hour < 10 ? '0${time.hour}:' : '${time.hour}:';
+    result += time.minute < 10 ? '0${time.minute}' : '${time.minute}';
+    result += '\nприменены успешно';
+    return result;
   }
 }

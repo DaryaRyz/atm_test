@@ -18,6 +18,9 @@ dependencies:
   flutter_svg: ^1.1.4
   flutter_bloc: ^8.1.1
   wave: ^0.2.2
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
 
 dev_dependencies:
   flutter_test:
