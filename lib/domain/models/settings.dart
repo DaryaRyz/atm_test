@@ -27,21 +27,17 @@ class Settings {
     this.priceList = const [],
   });
 
-  static Settings emptySettings() {
-    return Settings(
-      priceList: [
-        Price(),
-        Price(),
-      ],
-      decimalCash: '',
-      decimalCashless: '',
-      scaleCash: '',
-      scaleCashless: '',
-      soundOn: true,
-      isUsing: true,
-
-    );
-  }
+  Settings.empty()
+      : priceList = [
+          Price(),
+          Price(),
+        ],
+        decimalCash = '',
+        decimalCashless = '',
+        scaleCash = '',
+        scaleCashless = '',
+        soundOn = true,
+        isUsing = true;
 
   Map<String, dynamic> toMap() {
     return {

@@ -11,7 +11,8 @@ abstract class AtmRepository {
 
 class MockAtmRepository implements AtmRepository {
   @override
-  Atm getAtm() {
+  Future<Atm> getAtm() async {
+    await Future.delayed(const Duration(seconds: 1));
     return Atm(
       id: '13856646',
       busType: 'MDB',

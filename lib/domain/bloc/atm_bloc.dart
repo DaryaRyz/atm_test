@@ -14,7 +14,6 @@ class AtmBloc extends Bloc<AtmBlocEvent, AtmBlocState> {
 
   FutureOr<void> _loadHandler(AtmBlocLoadEvent event, emit) async {
     emit(AtmBlocLoadingState());
-    await Future.delayed(const Duration(seconds: 1));
     try {
       final atm = await repository.getAtm();
       emit(AtmBlocReadyState(atm: atm));
