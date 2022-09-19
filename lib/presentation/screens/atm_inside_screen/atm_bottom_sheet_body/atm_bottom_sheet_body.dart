@@ -1,5 +1,3 @@
-import 'package:atm_test/data/repository/storage_repository.dart';
-import 'package:atm_test/data/storage_util.dart';
 import 'package:atm_test/domain/bloc/settings_bloc.dart';
 import 'package:atm_test/domain/models/price.dart';
 import 'package:atm_test/domain/models/settings.dart';
@@ -16,6 +14,7 @@ import 'package:atm_test/presentation/widgets/custom_loading_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
 
 class AtmBottomSheetBody extends StatefulWidget {
   const AtmBottomSheetBody({Key? key}) : super(key: key);
@@ -25,11 +24,7 @@ class AtmBottomSheetBody extends StatefulWidget {
 }
 
 class _AtmBottomSheetBodyState extends State<AtmBottomSheetBody> {
-  final _settingsBloc = SettingsBloc(
-    repository: StorageDataRepository(
-      storage: StorageUtil(),
-    ),
-  );
+  final _settingsBloc = GetIt.I<SettingsBloc>();
   final _decimalCashController = TextEditingController();
   final _decimalCashlessController = TextEditingController();
   final _scaleCashController = TextEditingController();

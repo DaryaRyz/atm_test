@@ -1,4 +1,3 @@
-import 'package:atm_test/data/repository/atm_repository.dart';
 import 'package:atm_test/domain/bloc/atm_bloc.dart';
 import 'package:atm_test/domain/models/atm.dart';
 import 'package:atm_test/presentation/screens/atm_inside_screen/atm_bottom_sheet_body/atm_bottom_sheet_body.dart';
@@ -13,6 +12,7 @@ import 'package:atm_test/presentation/widgets/custom_loading_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
 
 import 'atm_main_info/atm_main_info.dart';
 
@@ -24,12 +24,18 @@ class AtmInsideScreen extends StatefulWidget {
 }
 
 class _AtmInsideScreenState extends State<AtmInsideScreen> {
-  final _atmBloc = AtmBloc(repository: MockAtmRepository());
+  final _atmBloc = GetIt.I<AtmBloc>();
 
   @override
   void initState() {
     _atmBloc.add(AtmBlocLoadEvent());
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _atmBloc.close();
+    super.dispose();
   }
 
   @override
